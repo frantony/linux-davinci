@@ -637,6 +637,8 @@ EVT_CFG(DM365,	EVT2_ASP_TX,         0,     1,    0,     false)
 EVT_CFG(DM365,	EVT3_ASP_RX,         1,     1,    0,     false)
 EVT_CFG(DM365,	EVT2_VC_TX,          0,     1,    1,     false)
 EVT_CFG(DM365,	EVT3_VC_RX,          1,     1,    1,     false)
+EVT_CFG(DM365,	EVT18_SPI3_TX, 3,     1,    1,     false)
+EVT_CFG(DM365,	EVT19_SPI3_RX, 4,     1,    1,     false)
 #endif
 };
 
