@@ -1087,8 +1087,10 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
 		 */
 		pr_err("Threaded irq requested with handler=NULL and !ONESHOT for irq %d\n",
 		       irq);
+		#if 0
 		ret = -EINVAL;
 		goto out_mask;
+		#endif
 	}
 
 	if (!shared) {
