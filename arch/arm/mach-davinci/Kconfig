@@ -132,6 +132,12 @@ config MACH_DAVINCI_DM365_EVM
 	  Configure this option to specify whether the board used
 	  for development is a DM365 EVM
 
+config MACH_VIRT2REAL
+	bool "virt2real"
+	depends on ARCH_DAVINCI_DM365
+	help
+	  Say Y here to select virt2real board.
+
 config MACH_DAVINCI_DA830_EVM
 	bool "TI DA830/OMAP-L137/AM17x Reference Platform"
 	default ARCH_DAVINCI_DA830
