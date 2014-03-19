@@ -126,7 +126,14 @@ static __init void virt2real_init(void)
 	davinci_serial_init(&uart_config);
 
 	virt2real_mmc_configure();
-	davinci_setup_mmc(0, &virt2real_mmc_config);
+	/*
+	 * actually mmc1 is used, not 0!
+	 * we have to use davinci_setup_mmc(1, &virt2real_mmc_config);
+	 * see /proc/iomem output for working driver
+	 *   01d11000-01d11fff : da830-mmc.0
+	 *     01d11000-01d11fff : mmc0
+	davinci_setup_mmc(1, &virt2real_mmc_config);
+	*/
 
 	dm365_ks8851_init();
 	davinci_init_spi(&virt2real_spi_udesc_KSZ8851,
