@@ -595,6 +595,13 @@ static irqreturn_t ks8851_irq(int irq, void *_ks)
 
 	mutex_lock(&ks->lock);
 
+	/*
+	 * Turn off hardware interrupt during receive processing.  This fixes
+	 * the receive problem under heavy TCP traffic while transmit done
+	 * is enabled.
+	 */
+	ks8851_wrreg16(ks, KS_IER, 0);
+
 	status = ks8851_rdreg16(ks, KS_ISR);
 
 	netif_dbg(ks, intr, ks->netdev,
@@ -661,6 +668,9 @@ static irqreturn_t ks8851_irq(int irq, void *_ks)
 		ks8851_wrreg16(ks, KS_RXCR2, rxc->rxcr2);
 		ks8851_wrreg16(ks, KS_RXCR1, rxc->rxcr1);
 	}
+
+	/* Re-enable hardware interrupt. */
+	ks8851_wrreg16(ks, KS_IER, ks->rc_ier);
 
 	mutex_unlock(&ks->lock);
 
